@@ -26,6 +26,11 @@ while running:
     if not game_over:
         collide = pygame.Rect.colliderect(player, player2)
         keys = pygame.key.get_pressed()
+
+        if (player.left <= 0 or player.right >= width or player.top <= 0 or player.bottom >= height):
+            print("Hit the wall!!")
+            game_over = True
+
         if keys[pygame.K_UP]:
             player.y -= 4
 
