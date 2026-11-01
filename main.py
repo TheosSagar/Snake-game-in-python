@@ -9,6 +9,8 @@ height = 360
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Snake Game")
 
+count = 0
+
 # Random food generation
 random_food_width = random.randint(0, width - 5)
 random_food_height = random.randint(0, height - 5)
@@ -33,6 +35,10 @@ while running:
             running = False
 
     screen.fill((0, 0, 0))
+
+    score = font.render(f"Score: {count}", True, (255, 255, 255, 255), None)
+    score_rect = score.get_rect(topleft = (width - 470, height - 350))
+    screen.blit(score, score_rect)
 
     if not game_over:
         collide = pygame.Rect.colliderect(player, player2)
@@ -59,6 +65,10 @@ while running:
 
         if collide == True:
             print("Ate!!")
+
+            # Count Score
+            count+=1
+
             # Random food generation
             random_food_width = random.randint(0, width - 5)
             random_food_height = random.randint(0, height - 5)
